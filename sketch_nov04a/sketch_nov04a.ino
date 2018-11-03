@@ -1,30 +1,109 @@
 
-const int stepPin = 3;
-const int dirPin = 4;
+const int Pin1 = 2;
+const int Pin2 = 3;
+const int Pin3 = 4;
+const int Pin4 = 5;
+int _step = 0;
+boolean dir = false;  //false-clockwise, true-counter clockwise
 
 void setup() {
-  pinMode(3, OUTPUT);
-  pinMode(4, OUTPUT);
+  pinMode(Pin1, OUTPUT);
+  pinMode(Pin2, OUTPUT);
+  pinMode(Pin3, OUTPUT);
+  pinMode(Pin4, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(dirPin, HIGH);
-
-  for(int x = 0; x < 200; x++){
-    digitalWrite(stepPin, HIGH);
-    delayMicroseconds(500);
-    digitalWrite(stepPin, LOW);
-    delayMicroseconds(500);
+  switch(_step){
+    case 0:
+      digitalWrite(Pin1, LOW);
+      digitalWrite(Pin2, LOW);
+      digitalWrite(Pin3, LOW);
+      digitalWrite(Pin4, HIGH);
+    break;
+    case 1:
+      digitalWrite(Pin1, LOW);
+      digitalWrite(Pin2, LOW);
+      digitalWrite(Pin3, HIGH);
+      digitalWrite(Pin4, HIGH);
+    break;
+    case 2:
+      digitalWrite(Pin1, LOW);
+      digitalWrite(Pin2, LOW);
+      digitalWrite(Pin3, HIGH);
+      digitalWrite(Pin4, LOW);
+    break;
+    case 3:
+      digitalWrite(Pin1, LOW);
+      digitalWrite(Pin2, HIGH);
+      digitalWrite(Pin3, HIGH);
+      digitalWrite(Pin4, LOW);
+    break;
+    case 4:
+      digitalWrite(Pin1, LOW);
+      digitalWrite(Pin2, HIGH);
+      digitalWrite(Pin3, LOW);
+      digitalWrite(Pin4, LOW);
+    break;
+    case 5:
+      digitalWrite(Pin1, HIGH);
+      digitalWrite(Pin2, HIGH);
+      digitalWrite(Pin3, LOW);
+      digitalWrite(Pin4, LOW);
+    break;
+    case 6:
+      digitalWrite(Pin1, HIGH);
+      digitalWrite(Pin2, LOW);
+      digitalWrite(Pin3, LOW);
+      digitalWrite(Pin4, LOW);
+    break;
+    case 7:
+      digitalWrite(Pin1, HIGH);
+      digitalWrite(Pin2, LOW);
+      digitalWrite(Pin3, LOW);
+      digitalWrite(Pin4, HIGH);
+    break;
+    default:
+      digitalWrite(Pin1, LOW);
+      digitalWrite(Pin2, LOW);
+      digitalWrite(Pin3, LOW);
+      digitalWrite(Pin4, LOW);
+    break;
   }
 
-  delay(1000);
-
-  for(int x = 0; x < 200; x++){
-    digitalWrite(stepPin, HIGH);
-    delayMicroseconds(500);
-    digitalWrite(stepPin, LOW);
-    delayMicroseconds(500);
+  if(dir){
+    _step++;
+  }else{
+    _step--;
+  }
+  if(_step > 7){
+    _step = 0;
+  }
+  if(_step < 0){
+    _step = 7;
   }
   
-  delay(1000);
+  delay(1);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
