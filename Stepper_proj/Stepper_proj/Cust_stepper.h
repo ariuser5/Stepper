@@ -45,19 +45,32 @@ public:
 	Stepper(int pin1, int pin2, int pin3, int pin4);
 
 	//Methods
-	void Step();
-	void Step(int steps);
-	void setSpeed(int val);
+	virtual void Step() = 0;
+	virtual void Step(int steps) = 0;
+	virtual void setSpeed(int val) = 0;
 };
 
 class Unipolar_Stepper : Stepper {
 public:
 
+	//Constructor
+	Unipolar_Stepper();
+
+	//Methods
+	void Step();
+	void Step(int steps);
+	void setSpeed(int val);
 };
 
 class Bipolar_Stepper : Stepper {
 public:
+	//Constructor
+	Bipolar_Stepper();
 
+	//Methods
+	void Step();
+	void Step(int steps);
+	void setSpeed(int val);
 };
 
 #endif
